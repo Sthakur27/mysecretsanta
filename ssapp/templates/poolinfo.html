@@ -1,0 +1,56 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+{% block page_content %}
+<body background="http://eskipaper.com/images/holiday-backgrounds-9.jpg">
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+<style>
+h4 {
+    text-align: right;
+}
+
+h2 {
+    text-align: right;
+}
+
+h3 {
+    text-align: right;
+}
+</style>
+<h4><a href="/home">Home</a></h4>
+<h2>{{pool.name}} Group</h2>
+<h3>{{pool.description}}
+{% if isMember==false and pool.active==0%}
+<form action="/poolinfo/{{pool.id}}" method="POST">
+        <div class="login">
+                <div class="login-screen">
+                        <div class="app-title">
+                        </div>
+
+                        <div class="login-form">
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Password" name="password">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+                <input type="submit" value="Join Group" class="btn btn-primary btn-large btn-block" >
+                            <br>
+                        </div>
+
+        </div></div>
+</form>
+{% endif %}
+{% if admin==true %}
+<br><br><a href="/editpool/{{pool.id}}">Edit Group</a>
+{% endif %}
+{% if isMember==true %}
+{% if pool.active==false %}<br>
+Wait until Group Becomes Active
+{% else %}
+<h3>
+Your Target is: {{target.username}}<br>
+Possible gifts: {{target.wishlist}}</h3>
+{% endif %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,40 @@
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+{% block page_content %}
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+<center>
+<h2><a href="/home">Home</a></h2>
+<h1>Search Results</h1>
+<body background="https://orig00.deviantart.net/a995/f/2012/115/a/2/bubbles_and_balloons_by_madasahatter15-d4xjj18.png">
+<form action="/searchpools" method="POST">
+        <div class="login">
+                <div class="login-screen">
+                        <div class="app-title">
+                        </div>
+
+                        <div class="login-form">
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Search for a Group..." name="term">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+                <input type="submit" value="Search" class="btn btn-primary btn-large btn-block" >
+                            <br>
+                        </div>
+
+        </div></div>
+</form>
+{% for pool in pools %}
+<td>
+<div class="btn-group" style="padding-left: 2%; padding-right: 2%;">
+<a href="/poolinfo/{{pool.id}}" type="button" class = "btn btn-lg btn-secondary btn-info">
+<span data-toggle="tooltip" title='{{pool.description}}' data-placement="top">{{pool.name}}</span>
+</a>
+</div>
+</td>
+
+
+{% endfor %}
+{% endblock %}

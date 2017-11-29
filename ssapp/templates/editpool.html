@@ -1,0 +1,43 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+
+
+{% block page_content %}
+
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+<body background="http://www.publicdomainpictures.net/pictures/140000/velka/christmas-santa.jpg">
+<form action="/editpool/{{pool.id}}" method="POST">
+        <div class="login">
+                <div class="login-screen">
+                        <div class="app-title">
+                                <h1>Edit Group</h1>
+                        </div>
+
+                        <div class="login-form">
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="{{pool.name}}" placeholder="Group Name" name="name">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="{{pool.password}}" placeholder="password" name="password">
+                                <label class="login-field-icon fui-lock" for="login-pass"></label>
+                                </div>
+                               <div class="control-group">
+                                <input type="text" class="login-field" value="{{pool.description}}" placeholder="Group Name" name="description">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+                                {% if pool.active==0 %}
+                                <input type="checkbox" value="activate" name="activate">Activate Group<br>
+                                {% endif %}
+                                
+                <input type="submit" value="Submit Changes" class="btn btn-primary btn-large btn-block" >
+                            <br>
+                        </div>
+
+                <a href="/poolinfo/{{pool.id}}" type="button" class="btn btn-primary btn-larg btn-block"><center>Return</center></a>
+        </div></div>
+</form>
+{% endblock %}

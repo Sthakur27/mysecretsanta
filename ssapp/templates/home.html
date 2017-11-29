@@ -1,0 +1,70 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% extends "base.html" %}
+{% block page_content %}
+<link rel="stylesheet" href="/static/loginstyle.css" type="text/css">
+
+<body background="https://hdwallsource.com/img/2014/2/green-holiday-backgrounds-18367-18832-hd-wallpapers.jpg">
+<center>
+<div class="btn-group" style="padding-left: 2%; padding-right: 2%;">
+ <a href="/logout" type="button" class = "btn btn-lg btn-secondary btn-info">
+       Log Out
+        </a>
+</div>
+<br></br>
+<div class="btn-group" style="padding-left: 2%; padding-right: 2%;">
+ <a href="/newpool" type="button" class = "btn btn-lg btn-secondary btn-info">
+       Create a New Exchange
+        </a>
+</div>
+{% if msgs >0 %}
+<div class="btn-group" style="padding-left: 2%; padding-right: 2%;">
+ <a href="/msgs/{{user.id}}" type="button" class = "btn btn-lg btn-secondary btn-info">
+       You have {{msgs}} unread messages
+        </a>
+</div>
+{% else %}
+<div class="btn-group" style="padding-left: 2%; padding-right: 2%;">
+ <a href="/msgs/{{user.id}}" type="button" class = "btn btn-lg btn-secondary btn-info">
+       View Messages
+        </a>
+</div>
+{% endif %}
+
+
+<form action="/searchpools" method="POST">
+        <div class="login">
+                <div class="login-screen">
+                        <div class="app-title">
+                        </div>
+
+                        <div class="login-form">
+                                <div class="control-group">
+                                <input type="text" class="login-field" value="" placeholder="Search for a Group..." name="term">
+                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                </div>
+
+                <input type="submit" value="Search" class="btn btn-primary btn-large btn-block" >
+                            <br>
+                        </div>
+
+        </div></div>
+</form>
+
+
+
+<br></br><body><h1>Welcome {{user.username}}!</h1></body>
+
+
+<h2>My Groups</h2>
+{% for pool in pools %}
+<td>
+<div class="btn-group" style="padding-left: 2%; padding-right: 2%;">
+<a href="/poolinfo/{{pool.id}}" type="button" class = "btn btn-lg btn-secondary btn-info">
+<span data-toggle="tooltip" title='{{pool.description}}' data-placement="top">{{pool.name}}</span>
+</a>
+</div>
+</td>
+
+{% endfor %}
+{% endblock %}
